@@ -55,10 +55,12 @@ defmodule Terraform do
         super(conn, opts)
       catch
         _, %Phoenix.Router.NoRouteError{conn: conn} ->
+          require IEx; IEx.pry
           terraform(conn, @terraformer, opts)
       end
 
       def terraform(%Plug.Conn{} = conn, terraformer, opts) do
+        require IEx; IEx.pry
         terraformer.call(conn, opts)
       end
 
