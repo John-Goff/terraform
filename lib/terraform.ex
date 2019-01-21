@@ -55,14 +55,14 @@ defmodule Terraform do
         super(conn, opts)
       catch
         _, %Phoenix.Router.NoRouteError{conn: conn} ->
-          terraform(conn, @terraformer)
+          terraform(conn, @terraformer, opts)
       end
 
-      def terraform(%Plug.Conn{} = conn, terraformer) do
-        terraformer.call(conn, [])
+      def terraform(%Plug.Conn{} = conn, terraformer, opts) do
+        terraformer.call(conn, opts)
       end
 
-      defoverridable [terraform: 2]
+      defoverridable [terraform: 3]
     end
   end
 end
