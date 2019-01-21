@@ -54,7 +54,7 @@ defmodule Terraform do
       def call(conn, opts) do
         super(conn, opts)
       catch
-        _, %Phoenix.Router.NoRouteError{conn: conn} ->
+        _, %Phoenix.Router.NoRouteError{conn: c} ->
           require IEx; IEx.pry
           terraform(conn, @terraformer, opts)
       end
